@@ -29,9 +29,9 @@ export const getOneProduct = async (req, res) => {
     let product = await Products.findById(productId);
     console.log(product);
     if (!product) {
-      return res
-        .status(404)
-        .send({ message: `No found the  product with this id ${productId}` });
+      return res.status(404).send({
+        message: `No found the  product with this id ${productId}`,
+      });
     }
     res.status(200).send(product);
   } catch (err) {
@@ -43,10 +43,10 @@ export const getAllProducts = async (req, res) => {
   try {
     let products = await Products.find();
     if (!products || products.length === 0) {
-      return res.status(404).send({ message: "No products found" });
+      return res.status(200).send({ data: [], message: "No products found" });
     }
 
-    res.status(200).send(products);
+    res.status(200).send({ data: products });
   } catch (err) {
     console.log(err.message);
     res.status(500).send({ message: "Internal server error" });
@@ -60,7 +60,9 @@ export const deleteOneProduct = async (req, res) => {
     if (!deletedProduct) {
       return res.status(404).send({ message: "Product not found" });
     }
-    res.status(200).send({ message: "Product deleted successfully" });
+    res
+      .status(200)
+      .send({ status: 200, message: "Product deleted successfully" });
   } catch (err) {
     res.status(500).send({ message: "Internal server error" });
   }
