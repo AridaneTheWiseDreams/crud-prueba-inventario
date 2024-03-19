@@ -18,7 +18,6 @@ export const addProduct = async (req, res) => {
     await product.save();
     res.status(200).send({ message: "Successfully added the new product" });
   } catch (err) {
-    console.log(err);
     res.status(500).send({ message: "Internal server error" });
   }
 };
@@ -27,7 +26,6 @@ export const getOneProduct = async (req, res) => {
   try {
     let productId = req.params.productId;
     let product = await Products.findById(productId);
-    console.log(product);
     if (!product) {
       return res.status(404).send({
         message: `No found the  product with this id ${productId}`,
