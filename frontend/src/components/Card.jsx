@@ -17,24 +17,22 @@ export const Card = ({ _id, title, stock, material, handleOnClick }) => {
   };
 
   return (
-    <div className="w-72">
-      <div className="flex flex-col gap-3 border">
-        <div className="relative w-full">
-          <div className="flex gap-2 absolute right-2 top-2">
-            <div className="cursor-pointer" onClick={handleDeleteItem}>
-              <DeleteIcon className="size-3" />
-            </div>
-            <div className="cursor-pointer" onClick={handleUpdateItem}>
-              <EditIcon className="size-3" />
-            </div>
+    <div className="w-72 border rounded-lg overflow-hidden">
+      <div className="flex items-center justify-between px-3 py-2 bg-gray-200">
+        <h3 className="font-semibold">{title}</h3>
+        <div className="flex gap-2">
+          <div className="cursor-pointer" onClick={handleDeleteItem}>
+            <DeleteIcon className="h-5 w-5 text-red-400 hover:text-red-700" />
+          </div>
+          <div className="cursor-pointer" onClick={handleUpdateItem}>
+            <EditIcon className="h-5 w-5 text-blue-500 hover:text-blue-700" />
           </div>
         </div>
-        <div className="text-lg">
-          <h3 className="font-semibold">{title}</h3>
-        </div>
-        <div className=" flex gap-2">
-          <p>{stock} en stock</p>
-          <p>Material: {material}</p>
+      </div>
+      <div className="px-3 py-2">
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-gray-600">{stock} en stock</p>
+          <p className="text-sm text-gray-600">Material: {material}</p>
         </div>
       </div>
     </div>
