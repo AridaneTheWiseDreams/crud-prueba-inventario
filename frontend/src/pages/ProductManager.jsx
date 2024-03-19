@@ -50,60 +50,56 @@ export function ProductManager() {
 
   return (
     <>
-      <div className="fixed w-full z-10">
+      <div className="fixed top-0 left-0 right-0 z-10 ">
         <Header visibility={true} />
       </div>
-      <div className="flex flex-col justify-center items-center h-screen">
-        <h1 className="text-center mt-4 font-bold text-4xl absolute top-10">
-          Formulario
-        </h1>
-        <div className="flex flex-col justify-center items-center">
-          <form
-            onSubmit={handleSubmit}
-            className="border border-black w-fit mx-auto p-4 rounded flex flex-col gap-8"
-          >
+      <div className="flex flex-col items-center justify-center h-screen">
+        <h1 className="absolute top-12 text-4xl font-bold">Formulario</h1>
+        <div className="w-full max-w-sm px-4 py-8  mt-20  border border-black rounded-lg shadow-lg">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <h1 className="text-xl font-semibold underline">
-              {type == "update" ? "Actualizar" : "Añadir"} producto
+              {type === "update" ? "Actualizar" : "Añadir"} producto
             </h1>
-            <div className="flex flex-col gap-5">
-              <div className="">
-                <label className="flex flex-col">
-                  Nombre del producto
-                  <input
-                    type="text"
-                    ref={titleRef}
-                    defaultValue={title || ""}
-                    className="border border-black rounded"
-                  />
-                </label>
-              </div>
-              <div className="">
-                <label className="flex flex-col">
-                  Material del producto
-                  <input
-                    type="text"
-                    ref={materialRef}
-                    defaultValue={material || ""}
-                    className="border border-black rounded"
-                  />
-                </label>
-              </div>
-              <div className="">
-                <label className="flex flex-col">
-                  Stock del producto
-                  <input
-                    type="number"
-                    ref={stockRef}
-                    defaultValue={stock || 0}
-                    className="border border-black rounded"
-                  />
-                </label>
-              </div>
-              <div className="flex justify-center ">
-                <button type="submit" className="bg-blue-300 px-4 py-1 rounded">
-                  {type == "update" ? "Actualizar" : "Añadir"}
-                </button>
-              </div>
+            <div>
+              <label className="flex flex-col">
+                Nombre del producto
+                <input
+                  type="text"
+                  ref={titleRef}
+                  defaultValue={title || ""}
+                  className="mt-1 border border-black rounded"
+                />
+              </label>
+            </div>
+            <div>
+              <label className="flex flex-col">
+                Material del producto
+                <input
+                  type="text"
+                  ref={materialRef}
+                  defaultValue={material || ""}
+                  className="mt-1 border border-black rounded"
+                />
+              </label>
+            </div>
+            <div>
+              <label className="flex flex-col">
+                Stock del producto
+                <input
+                  type="number"
+                  ref={stockRef}
+                  defaultValue={stock || 0}
+                  className="mt-1 border border-black rounded"
+                />
+              </label>
+            </div>
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                className="px-4 py-2 bg-blue-300 rounded hover:bg-blue-400"
+              >
+                {type === "update" ? "Actualizar" : "Añadir"}
+              </button>
             </div>
           </form>
         </div>
