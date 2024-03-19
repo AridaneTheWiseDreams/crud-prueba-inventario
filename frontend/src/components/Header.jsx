@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const Header = ({ onSearch }) => {
+export const Header = ({ onSearch, visibility = false }) => {
   const handleSearch = (event) => {
     const query = event.target.value;
     onSearch(query);
@@ -22,16 +22,18 @@ export const Header = ({ onSearch }) => {
           <div>
             <input
               type="text"
-              className="h-4 rounded placeholder:text-[.7rem]"
+              className={`h-4 rounded placeholder:text-[.7rem] ${
+                visibility ? "hidden" : ""
+              }`}
               placeholder="Search..."
               onChange={handleSearch}
             />
           </div>
           <div className="flex gap-x-4">
-            <div className="">
+            <div>
               <Link to="/">Home</Link>
             </div>
-            <div className="">
+            <div>
               <Link to="/products">Productos</Link>
             </div>
           </div>
