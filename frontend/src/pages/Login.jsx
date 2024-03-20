@@ -44,6 +44,7 @@ export function Login() {
             <div className="flex flex-col w-72 gap-1">
               <label className="font-semibold">Correo electronico:</label>
               <input
+                type="text"
                 className="rounded py-1 px-2"
                 placeholder="Introduce tu correo"
                 ref={emailRef}
@@ -52,6 +53,7 @@ export function Login() {
             <div className="flex flex-col w-72 gap-1">
               <label className="font-semibold">Contraseña:</label>
               <input
+                type="password"
                 className="rounded py-1 px-2"
                 placeholder="Introduce tu contraseña"
                 ref={passwordRef}
