@@ -1,4 +1,4 @@
-import { dbModels } from "../models";
+import { dbModels } from "../models/index.js";
 const Users = dbModels.Users;
 
 export const addUser = async (req, res) => {
