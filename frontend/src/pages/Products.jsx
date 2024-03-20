@@ -68,7 +68,7 @@ export default function Products() {
       <h1 className="text-center mt-4 font-bold text-4xl select-none">
         Productos
       </h1>
-      <div className="w-full relative">
+      <div className={`w-full relative ${rol !== "admin" ? "hidden" : ""}`}>
         <Link
           to={"/product-manager"}
           className="absolute -top-4 right-5 sm:right-2"
