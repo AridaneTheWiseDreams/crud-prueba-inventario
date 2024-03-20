@@ -5,7 +5,7 @@ import {
   getAllUser,
   getOneUser,
   updateOneUser,
-} from "../controllers/users.controller";
+} from "../controllers/users.controller.js";
 
 const router = Router();
 
