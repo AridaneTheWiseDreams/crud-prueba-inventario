@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Header } from "../components/Header";
+import { Header } from "../components/Header/Header";
 import ProductService from "../services/ProductService";
 import { Card } from "../components/Card";
 import { AddIcon } from "../components/icons/AddIcon";
@@ -24,15 +24,6 @@ export default function Products() {
 
   const handleSearch = (query) => {
     setSearchQuery(query);
-
-    if (searchQuery === "") {
-      return setFilteredProducts(products);
-    }
-
-    const filtered = products.filter((product) =>
-      product.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredProducts(filtered);
   };
 
   const handleClick = async (e) => {
@@ -55,13 +46,26 @@ export default function Products() {
   };
 
   useEffect(() => {
+    if (searchQuery === "") {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter((product) =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [searchQuery, products]);
+
+  useEffect(() => {
     getAllProducts();
   }, []);
 
   return (
     <>
       <Header onSearch={handleSearch} />
-      <h1 className="text-center mt-4 font-bold text-4xl">Productos</h1>
+      <h1 className="text-center mt-4 font-bold text-4xl select-none">
+        Productos
+      </h1>
       <div className="w-full relative">
         <Link
           to={"/product-manager"}
