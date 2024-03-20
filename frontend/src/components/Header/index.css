@@ -1,0 +1,29 @@
+.nav-link {
+  position: relative;
+}
+
+.nav-link::before,
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: #ffffff;
+  transition: width 0.4s ease-in-out, left 0.4s ease-in-out;
+}
+
+.nav-link::before {
+  right: 100%;
+}
+
+.nav-link::after {
+  left: 100%;
+}
+
+.nav-link:hover::before,
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
