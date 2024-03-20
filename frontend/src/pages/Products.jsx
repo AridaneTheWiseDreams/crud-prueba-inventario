@@ -6,6 +6,8 @@ import { AddIcon } from "../components/icons/AddIcon";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Products() {
+  const rol = localStorage.getItem("rol");
+
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -85,6 +87,7 @@ export default function Products() {
                   stock={product.stock}
                   _id={product._id}
                   handleOnClick={handleClick}
+                  rol={rol}
                 />
               ))
             : ""}
