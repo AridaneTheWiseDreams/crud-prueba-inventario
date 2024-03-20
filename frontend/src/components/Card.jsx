@@ -1,7 +1,7 @@
 import { DeleteIcon } from "./icons/DeleteIcon";
 import { EditIcon } from "./icons/EditIcon";
 
-export const Card = ({ _id, title, stock, material, handleOnClick }) => {
+export const Card = ({ _id, title, stock, material, rol, handleOnClick }) => {
   const handleDeleteItem = () => {
     handleOnClick({ id: _id, type: "delete" });
   };
@@ -22,10 +22,18 @@ export const Card = ({ _id, title, stock, material, handleOnClick }) => {
         <h3 className="font-semibold">{title}</h3>
         <div className="flex gap-2">
           <div className="cursor-pointer" onClick={handleDeleteItem}>
-            <DeleteIcon className="h-5 w-5 text-red-400 hover:text-red-700" />
+            <DeleteIcon
+              className={`h-5 w-5 text-red-400 hover:text-red-700 ${
+                rol !== "admin" ? "hidden" : ""
+              }`}
+            />
           </div>
           <div className="cursor-pointer" onClick={handleUpdateItem}>
-            <EditIcon className="h-5 w-5 text-blue-500 hover:text-blue-700" />
+            <EditIcon
+              className={`h-5 w-5 text-blue-500 hover:text-blue-700 ${
+                rol !== "admin" ? "hidden" : ""
+              }`}
+            />
           </div>
         </div>
       </div>
