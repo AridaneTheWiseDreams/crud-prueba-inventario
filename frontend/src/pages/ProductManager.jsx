@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Header } from "../components/Header";
+import { Header } from "../components/Header/Header";
 import ProductService from "../services/ProductService";
 
 export function ProductManager() {
@@ -54,7 +54,7 @@ export function ProductManager() {
         <Header visibility={true} />
       </div>
       <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="absolute top-12 text-4xl font-bold">Formulario</h1>
+        <h1 className="absolute top-20 text-4xl font-bold">Formulario</h1>
         <div className="w-full max-w-sm px-4 py-8  mt-20  border border-black rounded-lg shadow-lg">
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <h1 className="text-xl font-semibold underline">
