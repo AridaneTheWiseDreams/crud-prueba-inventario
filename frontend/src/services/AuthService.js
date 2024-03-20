@@ -6,4 +6,9 @@ async function login(user) {
   return response;
 }
 
-export default { login };
+async function logout() {
+  localStorage.removeItem("rol");
+  return;
+}
+
+export default { login, logout };
