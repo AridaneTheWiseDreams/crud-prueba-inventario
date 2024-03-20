@@ -1,10 +1,20 @@
 import { Link } from "react-router-dom";
 import "./index.css";
+import { LogOutIcon } from "../icons/LogOutIcon";
+import AuthService from "../../services/AuthService";
+import { useNavigate } from "react-router-dom";
 
 export const Header = ({ onSearch, visibility = false }) => {
+  const navigate = useNavigate();
+
   const handleSearch = (event) => {
     const query = event.target.value;
     onSearch(query);
+  };
+
+  const handleClick = async () => {
+    await AuthService.logout();
+    navigate("/login");
   };
 
   return (
@@ -48,6 +58,9 @@ export const Header = ({ onSearch, visibility = false }) => {
               >
                 Productos
               </Link>
+              <button className="text-lg transition" onClick={handleClick}>
+                <LogOutIcon className="size-5 fill-white" />
+              </button>
             </nav>
           </div>
         </div>
