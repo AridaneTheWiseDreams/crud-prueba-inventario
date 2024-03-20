@@ -36,7 +36,10 @@ export const Header = ({ onSearch, visibility = false }) => {
           </div>
           <div className="flex items-center">
             <nav className="sm:flex space-x-4 text-white hidden">
-              <Link to="/" className="nav-link text-white text-lg transition">
+              <Link
+                to="/home"
+                className="nav-link text-white text-lg transition"
+              >
                 Home
               </Link>
               <Link
