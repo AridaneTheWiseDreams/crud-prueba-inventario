@@ -1,10 +1,10 @@
-export const SearchIcon = (style) => {
+export const SearchIcon = ({ className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       stroke="currentColor"
-      className={`${style.className}`}
+      className={`${className}`}
       viewBox="0 0 24 24"
     >
       <path
