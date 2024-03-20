@@ -13,11 +13,18 @@ export const addUser = async (req, res) => {
         message: `Missing required fields: ${missingFields.join(", ")}`,
       });
     }
-
+    let existUser = await Users.findOne({ email: req.body.email });
+    if (existUser)
+      return res
+        .status(301)
+        .send({ message: `The user with email ${req.body.email} exist` });
     let user = new Users(req.body);
     await user.save();
-    res.status(200).send({ message: "Successfully added the new user" });
+    res
+      .status(200)
+      .send({ data: user, message: "Successfully added the new user" });
   } catch (err) {
+    console.log(err);
     res.status(500).send({ message: "Internal server error" });
   }
 };
