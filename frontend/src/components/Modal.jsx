@@ -1,10 +1,26 @@
 import { useRef } from "react";
 import { CrossMark } from "./icons/CrossMark";
 
-export const Modal = ({ handleOnClick, productName }) => {
+export const Modal = ({
+  handleOnClick,
+  handleOnSubmit,
+  productName,
+  productId,
+}) => {
   const userNameRef = useRef();
   const productNameRef = useRef();
   const stockRef = useRef();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleOnSubmit({
+      userId: localStorage.getItem("userId"),
+      productId: productId,
+      stock: stockRef.current.value,
+      type_process: "pending",
+    });
+  };
+
   const closeModal = () => {
     handleOnClick({
       type: "open",
@@ -17,7 +33,7 @@ export const Modal = ({ handleOnClick, productName }) => {
         <div className="absolute right-2 top-2" onClick={closeModal}>
           <CrossMark className="size-6" />
         </div>
-        <form className="mt-2 flex flex-col gap-y-2">
+        <form className="mt-2 flex flex-col gap-y-2" onSubmit={handleSubmit}>
           <div className="flex gap-x-2">
             <label className="font-semibold text-black">Username:</label>
             <input
