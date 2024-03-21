@@ -7,13 +7,17 @@ export const addUsersProducts = async (req, res) => {
     const missingFields = requiredFields.filter(
       (field) => !(field in req.body)
     );
-
     if (missingFields.length > 0) {
       return res.status(400).send({
         message: `Missing required fields: ${missingFields.join(", ")}`,
       });
     }
-
+    if (req.body.quantity_product == "0") {
+      console.log(req.body.quantity_product);
+      return res
+        .status(404)
+        .send({ message: "The quantity product cannot be 0" });
+    }
     let userProduct = new UsersProducts(req.body);
     await userProduct.save();
     res.status(200).send({ message: "Successfully added the user product" });
