@@ -46,7 +46,6 @@ export const getAllProducts = async (req, res) => {
 
     res.status(200).send({ data: products });
   } catch (err) {
-    console.log(err.message);
     res.status(500).send({ message: "Internal server error" });
   }
 };
