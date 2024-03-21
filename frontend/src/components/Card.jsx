@@ -18,6 +18,8 @@ export const Card = ({ _id, title, stock, material, rol, handleOnClick }) => {
   const handleOpenModal = () => {
     if (rol === "admin") return;
     handleOnClick({
+      productId: _id,
+      productTitle: title,
       type: "open",
     });
   };
