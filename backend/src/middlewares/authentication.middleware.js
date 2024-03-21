@@ -20,7 +20,11 @@ export const signin = async (req, res) => {
 
     let userData = await Users.findOne({ email: email });
 
-    return res.json({ rol: userData.rol });
+    return res.json({
+      rol: userData.rol,
+      id: userData._id,
+      username: userData.username,
+    });
   } catch (err) {
     return res.status(500).json({ message: "Internal server error" });
   }
