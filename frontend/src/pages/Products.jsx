@@ -1,18 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Header } from "../components/Header/Header";
 import ProductService from "../services/ProductService";
 import { Card } from "../components/Card";
 import { AddIcon } from "../components/icons/AddIcon";
 import { Link, useNavigate } from "react-router-dom";
 import { Modal } from "../components/Modal";
+import UsersProductsService from "../services/UsersProductsService";
 
 export default function Products() {
   const rol = localStorage.getItem("rol");
-
   const [products, setProducts] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const [titleProduct, setTitleProduct] = useState("");
+  const [idProduct, setidProduct] = useState("");
 
   const navigate = useNavigate();
 
@@ -28,6 +31,17 @@ export default function Products() {
 
   const handleSearch = (query) => {
     setSearchQuery(query);
+  };
+  const handleOnSubmit = async (e) => {
+    const response = await UsersProductsService.createOneUserProdructs({
+      user_id: e.userId,
+      product_id: e.productId,
+      quantity_product: e.stock,
+      type_process: e.type_process,
+    });
+    if (response.status === 200) {
+      setIsOpen(!isOpen);
+    }
   };
 
   const handleClick = async (e) => {
@@ -49,6 +63,8 @@ export default function Products() {
       });
     }
     if (e.type == "open") {
+      setidProduct(e.productId);
+      setTitleProduct(e.productTitle);
       setIsOpen(!isOpen);
     }
   };
@@ -86,9 +102,8 @@ export default function Products() {
         <div className="flex justify-center w-[90%] flex-wrap gap-4">
           {products
             ? filteredProducts.map((product) => (
-                <>
+                <div key={product._id}>
                   <Card
-                    key={product._id}
                     title={product.title}
                     material={product.material}
                     stock={product.stock}
@@ -98,13 +113,15 @@ export default function Products() {
                   />
                   {isOpen ? (
                     <Modal
+                      handleOnSubmit={handleOnSubmit}
                       handleOnClick={handleClick}
-                      productName={product.title}
+                      productName={titleProduct}
+                      productId={idProduct}
                     />
                   ) : (
                     ""
                   )}
-                </>
+                </div>
               ))
             : ""}
         </div>
