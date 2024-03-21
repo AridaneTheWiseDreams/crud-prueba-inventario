@@ -4,11 +4,13 @@ import ProductService from "../services/ProductService";
 import { Card } from "../components/Card";
 import { AddIcon } from "../components/icons/AddIcon";
 import { Link, useNavigate } from "react-router-dom";
+import { Modal } from "../components/Modal";
 
 export default function Products() {
   const rol = localStorage.getItem("rol");
 
   const [products, setProducts] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -34,7 +36,8 @@ export default function Products() {
       if (response.status === 200) {
         getAllProducts();
       }
-    } else if (e.type == "update") {
+    }
+    if (e.type == "update") {
       navigate("/product-manager", {
         state: {
           id: e.id,
@@ -44,6 +47,9 @@ export default function Products() {
           type: "update",
         },
       });
+    }
+    if (e.type == "open") {
+      setIsOpen(!isOpen);
     }
   };
 
@@ -80,15 +86,25 @@ export default function Products() {
         <div className="flex justify-center w-[90%] flex-wrap gap-4">
           {products
             ? filteredProducts.map((product) => (
-                <Card
-                  key={product._id}
-                  title={product.title}
-                  material={product.material}
-                  stock={product.stock}
-                  _id={product._id}
-                  handleOnClick={handleClick}
-                  rol={rol}
-                />
+                <>
+                  <Card
+                    key={product._id}
+                    title={product.title}
+                    material={product.material}
+                    stock={product.stock}
+                    _id={product._id}
+                    handleOnClick={handleClick}
+                    rol={rol}
+                  />
+                  {isOpen ? (
+                    <Modal
+                      handleOnClick={handleClick}
+                      productName={product.title}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </>
               ))
             : ""}
         </div>

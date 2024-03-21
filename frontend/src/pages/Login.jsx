@@ -20,6 +20,7 @@ export function Login() {
     };
     const response = await AuthService.login(user);
     if (response.status === 200) {
+      localStorage.setItem("username", emailValue.split("@")[0]);
       localStorage.setItem("rol", response.data.rol);
       navigate("/home");
     }
