@@ -15,9 +15,18 @@ export const Card = ({ _id, title, stock, material, rol, handleOnClick }) => {
       type: "update",
     });
   };
+  const handleOpenModal = () => {
+    if (rol === "admin") return;
+    handleOnClick({
+      type: "open",
+    });
+  };
 
   return (
-    <div className="w-72 border rounded-lg overflow-hidden select-none">
+    <div
+      className="w-72 border rounded-lg overflow-hidden select-none"
+      onClick={handleOpenModal}
+    >
       <div className="flex items-center justify-between px-3 py-2 bg-gray-200">
         <h3 className="font-semibold">{title}</h3>
         <div className="flex gap-2">
