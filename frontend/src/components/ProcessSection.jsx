@@ -4,10 +4,10 @@ export const ProcessSection = ({ title, type, usersProducts }) => {
   );
 
   return (
-    <div className="max-w-[30%] w-full">
+    <div className="w-full md:max-w-[30%]">
       <p className="text-2xl font-bold mb-4 text-center">{title}</p>
       {filteredProducts.map((userProduct) => (
-        <div key={userProduct._id} className="mb-4  text-balance">
+        <div key={userProduct._id} className="mb-4 text-balance">
           <div className="bg-slate-100 p-4 rounded-lg">
             <p className="text-lg font-semibold">
               {`El usuario ${userProduct.user_id.username} ${
